@@ -1,25 +1,28 @@
 package com.Infosys.WFH.models;
 
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
 import java.time.LocalTime;
 import java.util.Date;
 
 @Getter
 @Setter
-@Table
 @Entity
+@Table(name = "WfhRequest")
 public class WfhRequest {
-    private int id;
-    private int empId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true)
+    private Long id;
+    private Long empId;
     private String empName;
     private Date fromDate;
     private LocalTime fromTime;
     private Date toDate;
     private LocalTime toTime;
-    private int approverId;
+    private Long approverId;
+    @Enumerated
     private State state;
 }
